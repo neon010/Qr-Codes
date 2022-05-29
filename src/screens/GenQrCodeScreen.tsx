@@ -15,7 +15,6 @@ export const GenQrCodeScreen = ({navigation,route}:Props) =>{
     const [imageUri, setImageUri] = useState<any>(null);
     const [error, setError] = useState('');
 
-    console.log(text);
 
     const generate = () => {
         if (!text.trim()) {
