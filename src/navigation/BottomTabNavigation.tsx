@@ -27,7 +27,7 @@ export const BottomTabNavigation = () =>{
             tabBarStyle: {
             backgroundColor: 'white',
             position: 'absolute',
-            height: 90,
+            height: 70,
             shadowColor: '#000',
             shadowOpacity: 0.06,
             shadowOffset: {
@@ -61,7 +61,7 @@ export const BottomTabNavigation = () =>{
                     tabBarIcon:({focused})=>{
                         return (
                             <View style={{width:80, justifyContent:"center", alignItems:"center"}}>
-                                <Ionicons name="menu" size={24}/>
+                                <Ionicons name="create-outline" size={24}/>
                                 <Text style={{fontSize: 12}}>Create</Text>
                             </View>
                         )

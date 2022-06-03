@@ -1,9 +1,8 @@
-import React from "react";
-import {View, Text, Image,StyleSheet,Pressable} from "react-native";
+import React, { useState } from "react";
+import {View, Text, Image,StyleSheet,PermissionsAndroid,Pressable} from "react-native";
 import { StackParamList } from "../navigation/StackNavigation";
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import Ionicons  from 'react-native-vector-icons/Ionicons';
-import RNFetchBlob from 'rn-fetch-blob';
 import RNFS from "react-native-fs"
 import Share from 'react-native-share';
 
@@ -12,10 +11,12 @@ type Props = NativeStackScreenProps<StackParamList>;
 
 export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
 
+    const [message, setMessage] = useState("");
+
     // @ts-ignore
     const {uri} = route.params;
 
-    console.log(uri)
+
 
     return (
         <View>
@@ -41,7 +42,7 @@ export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
                 style={{
                     backgroundColor: '#F3F3F3',
                     width: 300,
-                    height: 300,
+                    height: 250,
                     borderWidth: StyleSheet.hairlineWidth,
                     marginBottom: 16,
                 }}
@@ -53,30 +54,37 @@ export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
                 onPress={async()=>{
                     console.log("save");
                     try {
-                        const picsName = uri.split("/").pop();
-                        console.log(picsName)
+                        
+                        const granted = await PermissionsAndroid.request(
+                            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+                            {
+                              title: "Cool Photo App WRITE_EXTERNAL_STORAGE Permission",
+                              message:
+                                "Cool Photo App needs access to your WRITE_EXTERNAL_STORAGE " +
+                                "so you can take awesome pictures.",
+                              buttonNeutral: "Ask Me Later",
+                              buttonNegative: "Cancel",
+                              buttonPositive: "OK"
+                            }
+                        );
+                        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
 
-                        const newPath = `${RNFS.DocumentDirectoryPath}/${picsName}`; // You don't really need the `'file://` prefix
-                        console.log(newPath);
-                    
-                        // COPY the file
-                        RNFS.moveFile(uri, newPath)
-                          .then((success) => {
-                            console.log('IMG moved!');
-                            console.log(newPath);
-                          })
-                          .catch((err) => {
-                            console.log(err.message);
-                          });
-                    
-            
-                        // await RNFetchBlob.fs.mkdir(`${RNFetchBlob.fs.dirs.PictureDir}/QRCode123`)
-                        // await RNFetchBlob.fs.mv(uri, 
-                        //     `${RNFetchBlob.fs.dirs.PictureDir}/QRCode/${picsName}`
-                        // )
-                        // console.log("picture saved save");
+                            const picsName = `${(Math.random()*1000000).toString()}.png`;
+                            const newPath = `file://${RNFS.PicturesDirectoryPath}/${picsName}`; 
+ 
+                            // COPY the file
+                            await RNFS.copyFile(uri, newPath)
+                              .then((success) => {
+                                setMessage(`Image saved to ${newPath}`)
+                            })
+                              .catch((err) => {
+                                setMessage(err.message)
+                            });
+                        } else {
+                            console.log("Camera permission denied");
+                        }
                     }catch (error) {
-                        console.log(error)
+                        setMessage("Coudld not able to save file")
                     }
                 }}>
                     <Text style={{color:"#fff"}}>Save</Text>
@@ -98,6 +106,12 @@ export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
                 >
                     <Text style={{color:"#fff"}}>Share</Text>
                 </Pressable>
+            </View>
+            <View>
+                <Text>{message}</Text>
+            </View>
+            <View>
+                <Image source={{uri:`${RNFS.PicturesDirectoryPath}/hello.png`}} style={{width:250, height:250}}/>
             </View>
         </View>
     )

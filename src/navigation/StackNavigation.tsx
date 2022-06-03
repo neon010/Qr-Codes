@@ -6,16 +6,12 @@ import { GenQrCodeScreen } from "../screens/GenQrCodeScreen";
 import { SaveQrCodeData } from "../screens/SaveQrCodeData";
 import { TextQrCreate } from "../screens/TextQrCreate";
 import { ClipboardQrCreate } from "../screens/ClipboardQrCreate";
-import { LocationQrCreate } from "../screens/LocationQrCreate";
 import { LinkQrCreate } from "../screens/LinkQrCreate";
-import { WifiQrCreate } from "../screens/WifiQrCreate";
 import { EmailQrCreate } from "../screens/EmailQrCreate";
-import { SmsQrCreate } from "../screens/SmsQrCreate";
-import { ContactQrCreate } from "../screens/ContactQrCreate";
-import { WhatsAppQrCreate } from "../screens/WhatsAppQrCreate";
 import { FacebookQrCreate } from "../screens/FacebookQrCreate";
 import { YoutubeQrCreate } from "../screens/YoutubeQrCreate";
 import { TwitterQrCreate } from "../screens/TwitterQrCreate";
+import { WhatsAppQrCreate } from "../screens/WhatsAppQrCreate";
 import { SaveQrCodeSvg } from "../screens/SaveQrCodeSvg";
 
 export type StackParamList = {
@@ -46,12 +42,8 @@ const Stack = createNativeStackNavigator<StackParamList>();
 const qrCodeCreateRoutes = [
     {name:'TextQrCreate', component:TextQrCreate},
     {name:'ClipboardQrCreate', component:ClipboardQrCreate},
-    {name:'LocationQrCreate',component:LocationQrCreate},
     {name:'LinkQrCreate',component:LinkQrCreate},
-    {name:'WifiQrCreate',component:WifiQrCreate},
     {name:'EmailQrCreate',component:EmailQrCreate},
-    {name:'SmsQrCreate',component:SmsQrCreate},
-    {name:'ContactQrCreate',component:ContactQrCreate},
     {name:'WhatsAppQrCreate',component:WhatsAppQrCreate},
     {name:'FacebookQrCreate',component:FacebookQrCreate},
     {name:'YoutubeQrCreate',component:YoutubeQrCreate},
@@ -98,7 +90,8 @@ export const StackNavigation = () =>{
                         <Stack.Screen
                         //@ts-ignore
                         name={item.name} 
-                        component={item.component} 
+                        component={item.component}
+                        key={item.name} 
                         options={{
                             headerShown:false
                         }} 

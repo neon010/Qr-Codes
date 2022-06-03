@@ -30,24 +30,9 @@ const createQrCodeMethods =[
         screenName:"URL"
     },
     {
-        name:"WifiQrCreate",
-        icon:"ios-wifi",
-        screenName:"Wifi"
-    },
-    {
         name:"EmailQrCreate",
         icon:"mail-outline",
         screenName:"Email"
-    },
-    {
-        name:"SmsQrCreate",
-        icon:"mail-open-outline",
-        screenName:"SMS"
-    },
-    {
-        name:"ContactQrCreate",
-        icon:"person-add-outline",
-        screenName:"Contact"
     },
     {
         name:"WhatsAppQrCreate",
@@ -78,36 +63,36 @@ export const CreateScreen = ({navigation}:Props) =>{
     const insets = useSafeAreaInsets();
 
     return (
-        <View style={{marginTop:insets.top}}>
-            <View style={{padding:10}}>
-                <Text style={{fontSize:16, color:"black"}}>Create QR Code</Text>
+        <ScrollView style={{marginTop:insets.top}}>
+            <View style={{padding:10, marginTop:10, marginBottom:10}}>
+                <Text style={{fontSize:20, color:"black"}}>Create QR Code</Text>
             </View>
-            <ScrollView style={{marginLeft:10, marginRight:10, backgroundColor:"#fff", borderRadius:10}}>
+            <View style={{marginLeft:10, marginRight:10, backgroundColor:"#fff", borderRadius:15}}>
                 {
                     createQrCodeMethods.map((item:any)=>{
                         return (
                             <Pressable style={styles.button} key={item.name} onPress={()=>navigation.navigate(item.name)}>
-                                <Ionicons name={item.icon} size={24}/>
+                                <Ionicons name={item.icon} size={24} color="#1e293b"/>
                                 <Text style={styles.text}>{item.screenName}</Text>
                             </Pressable>
                         )
                     })
                 }
-            </ScrollView>
-        </View>
+            </View>
+        </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
     button:{
         flexDirection:"row", 
-        padding:20,
+        padding:15,
         borderBottomWidth:1,
         borderBottomColor:'#ccc'
     },
     text:{
         marginLeft:30,
-        color:"black"
+        color:"#1f2937"
     }
 })
 
