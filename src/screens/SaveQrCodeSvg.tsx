@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import {View, Text, Image,StyleSheet,PermissionsAndroid,Pressable} from "react-native";
+import {View, Text, Image,StyleSheet,PermissionsAndroid,Pressable,ToastAndroid} from "react-native";
 import { StackParamList } from "../navigation/StackNavigation";
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import Ionicons  from 'react-native-vector-icons/Ionicons';
 import RNFS from "react-native-fs"
 import Share from 'react-native-share';
+import { createQrCodeHistory } from "../writingFile/createFile";
 
 
 type Props = NativeStackScreenProps<StackParamList>;
@@ -14,9 +15,16 @@ export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
     const [message, setMessage] = useState("");
 
     // @ts-ignore
-    const {uri} = route.params;
+    const {uri,content} = route.params;
 
 
+    const showToastWithGravity = () => {
+        ToastAndroid.showWithGravity(
+          "Photo saved in pictures folder",
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER
+        );
+    };
 
     return (
         <View>
@@ -80,6 +88,11 @@ export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
                               .catch((err) => {
                                 setMessage(err.message)
                             });
+
+                            createQrCodeHistory({uri:newPath,content})
+
+                            showToastWithGravity()
+
                         } else {
                             console.log("Camera permission denied");
                         }
@@ -106,12 +119,6 @@ export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
                 >
                     <Text style={{color:"#fff"}}>Share</Text>
                 </Pressable>
-            </View>
-            <View>
-                <Text>{message}</Text>
-            </View>
-            <View>
-                <Image source={{uri:`${RNFS.PicturesDirectoryPath}/hello.png`}} style={{width:250, height:250}}/>
             </View>
         </View>
     )

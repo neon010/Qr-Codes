@@ -11,7 +11,9 @@ export const scanDataTypes = (data:String):any=>{
             return {type:"URL", domain:"URL",logo:"link-outline"}
         }
     }else if(isPhoneNumber(data)){
-        return {type:"PHONE",logo:"logo-facebook"}
+        return {type:"PHONE",logo:"ios-phone-portrait-sharp"}
+    }else if(isEmail(data)){
+        return {type:"EMAIL",logo:"mail-outline"}
     }else{
         return {type:"Text",logo:"md-text-outline"}
     }
@@ -37,4 +39,10 @@ function isPhoneNumber(str:any){
     }else {  
       return false;
     }
+}
+
+function isEmail(str:any){
+    const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    if(re.test(str)) return true;
+    return false;
 }

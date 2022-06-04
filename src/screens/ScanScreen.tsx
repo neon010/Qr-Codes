@@ -10,6 +10,7 @@ import MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
 import Ionicons  from 'react-native-vector-icons/Ionicons';
 
 import { LogBox } from 'react-native'
+import { addScanHistory } from "../writingFile/createFile";
 
 
 
@@ -37,6 +38,7 @@ export const ScanScreen = ({navigation}:Props) =>{
     const onSuccess = (e:any) => {
         console.log(e.data)
         const scanData = e.data;
+        addScanHistory({content:scanData})
         navigation.navigate("SaveQrCodeData", {
           scanData
         })
@@ -55,7 +57,7 @@ export const ScanScreen = ({navigation}:Props) =>{
             } else {
               const data = res.values[0];
               setDetectedValues(data);
-
+              addScanHistory({content:data})
               navigation.navigate("SaveQrCodeData", {
                 scanData:data
               })

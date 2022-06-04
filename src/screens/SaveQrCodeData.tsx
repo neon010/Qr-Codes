@@ -10,17 +10,7 @@ import Ionicons  from 'react-native-vector-icons/Ionicons';
 
 type Props = NativeStackScreenProps<StackParamList>;
 
-const getIconName = (domain:string)=>{
-    if(domain === "twitter"){
-        return "logo-twitter"
-    }else if(domain === "youtube"){
-        return "logo-youtube"
-    }else if(domain === "facebook"){
-        return "logo-facebook"
-    }else{
-        return "link-outline"
-    }
-}
+
 
 export const SaveQrCodeData = ({navigation,route}:Props) =>{
 
@@ -76,7 +66,7 @@ export const SaveQrCodeData = ({navigation,route}:Props) =>{
                             alignItems:"center"
                             }}>
                                 {
-                                    scanDataTypes(scanData).Url && (
+                                    scanDataTypes(scanData).type === "URL" && (
                                         <Pressable 
                                         onPress={async ()=>{
                                             const url = scanData;

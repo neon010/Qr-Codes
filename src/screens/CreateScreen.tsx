@@ -20,11 +20,6 @@ const createQrCodeMethods =[
         screenName:"Content from clipboard"
     },
     {
-        name:"LocationQrCreate",
-        icon:"location-outline",
-        screenName:"Geo"
-    },
-    {
         name:"LinkQrCreate",
         icon:"link-outline",
         screenName:"URL"

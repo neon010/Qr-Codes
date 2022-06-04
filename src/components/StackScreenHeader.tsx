@@ -4,6 +4,7 @@ import Ionicons  from 'react-native-vector-icons/Ionicons';
 import { globalStyle } from "../styles/globalStyles";
 import {generateQr} from "../utils/generateQr"
 
+
 export const StackScreenHeader = (props:any)=>{
     return (
         <View 
@@ -30,12 +31,10 @@ export const StackScreenHeader = (props:any)=>{
                     setError(response?.error)
                     return;
                 }
-
-                // setImageUri(response);
-
                 props.navigation.navigate("SaveQrCodeSvg",{
                     //@ts-ignore
-                    uri:response
+                    uri:response,
+                    content:props.qrData
                 })
             }}>
                 <Text style={{

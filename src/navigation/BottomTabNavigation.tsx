@@ -6,6 +6,7 @@ import { CreateScreen } from "../screens/CreateScreen";
 import { HistoryScreen } from "../screens/HistoryScreen";
 import Ionicons  from 'react-native-vector-icons/Ionicons';
 import FontAwesome  from 'react-native-vector-icons/FontAwesome';
+import { TopTabNavigation } from "./TopTabNavigation";
 
 
 export type BottomTabParamList = {
@@ -70,7 +71,7 @@ export const BottomTabNavigation = () =>{
             />
             <Tab.Screen
                 name="HistoryScreen" 
-                component={HistoryScreen} 
+                component={TopTabNavigation} 
                 options={{
                     headerShown:false,
                     tabBarIcon:({focused})=>{
