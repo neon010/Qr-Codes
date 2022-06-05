@@ -13,8 +13,8 @@ type Props = NativeStackScreenProps<StackParamList>;
 
 export const YoutubeQrCreate = ({navigation}:Props) =>{
     const [text, setText] = useState("");
-    const [qrData, setQrData] = useState("")
-    const [type, setType] = useState("URL")
+    const [qrData, setQrData] = useState("");
+    const [type, setType] = useState("URL");
 
     return (
         <View>
@@ -24,17 +24,16 @@ export const YoutubeQrCreate = ({navigation}:Props) =>{
             />
             <ScreenLabel screenIcon={<Ionicons name="logo-youtube" size={24} color="#FF0000"/>}/>
             <View style={{...globalStyle.displayItemInCenter, marginTop:15}}>
-                <View style={{...globalStyle.displayItemInRow,borderWidth:1, borderColor:"green",borderRadius:20,}}>
+                <View style={{...globalStyle.displayItemInRow}}>
                     <Pressable 
                     style={{
-                        width:70, 
-                        height:35,
-                        padding:10,
-                        justifyContent:'center',
-                        alignItems:'center',
                         backgroundColor: type === "URL" ? "green": "transparent",
-                        borderRadius:20,
-                        borderColor:'green'
+                        width:100,
+                        height:40,
+                        marginRight:10,
+                        borderRadius:25,
+                        alignItems:'center',
+                        justifyContent:'center'
                     }}
                     onPress={()=> {
                         setType("URL");
@@ -50,14 +49,13 @@ export const YoutubeQrCreate = ({navigation}:Props) =>{
                     </Pressable>
                     <Pressable 
                     style={{
-                        width:70, 
-                        height:35,
-                        padding:10,
-                        justifyContent:'center',
-                        alignItems:'center',
                         backgroundColor: type === "videoId" ? "green": "transparent",
-                        borderRadius:20,
-                        borderColor:'green'
+                        width:100,
+                        height:40,
+                        marginRight:10,
+                        borderRadius:25,
+                        alignItems:'center',
+                        justifyContent:'center'
                     }}
                     onPress={()=> {
                         setType("videoId")
@@ -73,13 +71,13 @@ export const YoutubeQrCreate = ({navigation}:Props) =>{
                     </Pressable>
                     <Pressable 
                     style={{
-                        width:90, 
-                        height:35,
-                        justifyContent:'center',
-                        alignItems:'center',
                         backgroundColor: type === "channelName" ? "green": "transparent",
-                        borderRadius:20,
-                        borderColor:'green'
+                        width:100,
+                        height:40,
+                        marginRight:10,
+                        borderRadius:25,
+                        alignItems:'center',
+                        justifyContent:'center'
                     }}
                     onPress={()=> {
                         setType("channelName")

@@ -23,7 +23,8 @@ export const globalStyle = StyleSheet.create({
     },
     textInput:{
         padding: 10,
-        borderWidth:1
+        borderWidth:1,
+        borderRadius:10
     },
     textArea:{
         height: 100,
@@ -36,5 +37,5 @@ export const globalStyle = StyleSheet.create({
         marginBottom: 10,
         marginLeft: 10,
         marginRight: 10
-    }
+    },
 })

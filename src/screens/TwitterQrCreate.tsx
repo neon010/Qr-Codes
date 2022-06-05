@@ -3,7 +3,6 @@ import {View, Text, Pressable, TextInput} from "react-native";
 import Ionicons  from 'react-native-vector-icons/Ionicons';
 import { StackParamList } from "../navigation/StackNavigation";
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {generateQr} from "../utils/generateQr"
 import { ScreenLabel } from "../components/ScreenLabel";
 import { StackScreenHeader } from "../components/StackScreenHeader";
 import { globalStyle } from "../styles/globalStyles";
@@ -14,10 +13,8 @@ type Props = NativeStackScreenProps<StackParamList>;
 
 export const TwitterQrCreate = ({navigation}:Props) =>{
     const [text, setText] = useState("");
-    const [error,setError] = useState<any>("");
-    const [qrData, setQrData] = useState("")
-
-    const [type, setType] = useState("URL")
+    const [qrData, setQrData] = useState("");
+    const [type, setType] = useState("URL");
 
 
     return (
@@ -28,11 +25,16 @@ export const TwitterQrCreate = ({navigation}:Props) =>{
             />
             <ScreenLabel screenIcon={<Ionicons name="logo-twitter" size={24} color="#00acee"/>}/>
             <View style={{...globalStyle.displayItemInCenter}}>
-                <View style={{...globalStyle.displayItemInRow}}>
+                <View style={{...globalStyle.displayItemInRow, marginTop:15}}>
                     <Pressable 
                     style={{
-                        padding:15, 
-                        backgroundColor: type === "URL" ? "green": "transparent"
+                        backgroundColor: type === "URL" ? "green": "transparent",
+                        width:100,
+                        height:40,
+                        marginRight:10,
+                        borderRadius:25,
+                        alignItems:'center',
+                        justifyContent:'center'
                     }}
                     onPress={()=> {
                         setType("URL")
@@ -40,28 +42,25 @@ export const TwitterQrCreate = ({navigation}:Props) =>{
                         setQrData("")
                     }}
                     >
-                        <Text 
-                        style={{
-                            color: type === "URL" ? "#fff":"#000"
-                        }}
-                        >URL</Text>
+                        <Text style={{color: type === "URL" ? "#fff":"#000" }}>URL</Text>
                     </Pressable>
                     <Pressable 
                     style={{
-                        padding:15, 
-                        backgroundColor: type === "userName" ? "green": "transparent"
+                        backgroundColor: type === "userName" ? "green": "transparent",
+                        width:100,
+                        height:40,
+                        marginRight:10,
+                        borderRadius:25,
+                        alignItems:'center',
+                        justifyContent:'center'
                     }}
                     onPress={()=> {
-                        setType("userName")
-                        setText("")
-                        setQrData("")
+                        setType("userName");
+                        setText("");
+                        setQrData("");
                     }}
                     >
-                        <Text
-                        style={{
-                            color: type === "userName" ? "#fff":"#000"
-                        }}
-                        >UserName</Text>
+                        <Text style={{color: type === "userName" ? "#fff":"#000"}}>UserName</Text>
                     </Pressable>
                 </View>
             </View>

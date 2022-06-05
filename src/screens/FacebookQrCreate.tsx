@@ -25,11 +25,16 @@ export const FacebookQrCreate = ({navigation}:Props) =>{
             />
             <ScreenLabel screenIcon={<Ionicons name="logo-facebook" size={24} color="#00acee"/>}/>
             <View style={{...globalStyle.displayItemInCenter}}>
-                <View style={{...globalStyle.displayItemInRow}}>
+                <View style={{...globalStyle.displayItemInRow,marginTop:10}}>
                     <Pressable 
                     style={{
-                        padding:15, 
-                        backgroundColor: type === "URL" ? "green": "transparent"
+                        backgroundColor: type === "URL" ? "green": "transparent",
+                        width:100,
+                        height:40,
+                        marginRight:10,
+                        borderRadius:25,
+                        alignItems:'center',
+                        justifyContent:'center'
                     }}
                     onPress={()=> {
                         setType("URL")
@@ -45,8 +50,13 @@ export const FacebookQrCreate = ({navigation}:Props) =>{
                     </Pressable>
                     <Pressable 
                     style={{
-                        padding:15, 
-                        backgroundColor: type === "FacebookId" ? "green": "transparent"
+                        backgroundColor: type === "FacebookId" ? "green": "transparent",
+                        width:100,
+                        height:40,
+                        marginRight:10,
+                        borderRadius:25,
+                        alignItems:'center',
+                        justifyContent:'center'
                     }}
                     onPress={()=> {
                         setType("FacebookId")

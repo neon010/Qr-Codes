@@ -15,10 +15,10 @@ export const StackScreenHeader = (props:any)=>{
         }}
         >
             <Pressable 
-            style={{flexDirection:'row', alignItems:'center'}}
+            style={{flexDirection:'row', alignItems:'center', justifyContent:'center'}}
             onPress={()=>props.navigation.goBack()}>
                 <Ionicons name="arrow-back" size={24}/>
-                <Text style={{marginRight:5}}>Back</Text>
+                <Text style={{marginLeft:10}}>Back</Text>
             </Pressable>
             <Pressable 
             style={{flexDirection:'row', alignItems:'center'}}
@@ -37,11 +37,16 @@ export const StackScreenHeader = (props:any)=>{
                     content:props.qrData
                 })
             }}>
-                <Text style={{
+                <Text 
+                style={{
                     marginRight:5,
                     color: !props.qrData ? "red":"green"
                 }}>Create</Text>
-                <Ionicons name="checkmark-sharp" size={24}/>
+                <Ionicons 
+                name="checkmark-sharp" 
+                size={24}
+                color={!props.qrData ? "red":"green"}
+                />
             </Pressable>
         </View>
     )
