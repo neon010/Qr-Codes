@@ -4,7 +4,8 @@ import { StackParamList } from "../navigation/StackNavigation";
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Ionicons  from 'react-native-vector-icons/Ionicons';
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import { colors } from "../styles/colors";
+
 
 
 type Props = NativeStackScreenProps<StackParamList>;
@@ -14,49 +15,49 @@ const createQrCodeMethods =[
         name:"TextQrCreate",
         icon:"md-text-outline",
         screenName:"Text",
-        Color:"#d946ef"
+        Color:colors.textIconColor
     },
     {
         name:"ClipboardQrCreate",
         icon:"clipboard-outline",
         screenName:"Content from clipboard",
-        Color:"#3b82f6"
+        Color:colors.clipboardIconColor
     },
     {
         name:"LinkQrCreate",
         icon:"link-outline",
         screenName:"URL",
-        Color:"#84cc16"
+        Color:colors.linkIconColor
     },
     {
         name:"EmailQrCreate",
         icon:"mail-outline",
         screenName:"Email",
-        Color:"cyan"
+        Color:colors.emailIconColor
     },
     {
         name:"WhatsAppQrCreate",
         icon:"logo-whatsapp",
         screenName:"WhatsApp",
-        Color:"#25D366"
+        Color:colors.whatsAppColor
     },
     {
         name:"FacebookQrCreate",
         icon:"logo-facebook",
         screenName:"Facebook",
-        Color:"#4267B2"
+        Color:colors.facebookColor
     },
     {
         name:"YoutubeQrCreate",
         icon:"logo-youtube",
         screenName:"Youtube",
-        Color:"#FF0000"
+        Color:colors.youtubeColor
     },
     {
         name:"TwitterQrCreate",
         icon:"logo-twitter",
         screenName:"Twitter",
-        Color:"#00acee"
+        Color:colors.twitterColor
     }
 ]
     

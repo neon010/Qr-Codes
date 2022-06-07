@@ -7,6 +7,7 @@ import {generateQr} from "../utils/generateQr"
 import { ScreenLabel } from "../components/ScreenLabel";
 import { StackScreenHeader } from "../components/StackScreenHeader";
 import { globalStyle } from "../styles/globalStyles";
+import { colors } from "../styles/colors";
 
 
 
@@ -14,8 +15,7 @@ type Props = NativeStackScreenProps<StackParamList>;
 
 export const LinkQrCreate = ({navigation}:Props) =>{
     const [url, setUrl] = useState("");
-    const [error,setError] = useState<any>("");
-    const [imageUri, setImageUri] = useState<any>(null);
+
 
 
     return (
@@ -24,11 +24,11 @@ export const LinkQrCreate = ({navigation}:Props) =>{
                 navigation={navigation}
                 qrData={url}
             />
-            <ScreenLabel screenIcon={<Ionicons name="link-outline" size={24} color="#00acee"/>}/>
+            <ScreenLabel screenIcon={<Ionicons name="link-outline" size={24} color={colors.linkIconColor}/>}/>
             <View style={{marginTop:30, marginLeft:15, marginRight:15}}>
                 <TextInput
                     placeholder="URL"
-                    placeholderTextColor="grey"
+                    placeholderTextColor={colors.placeHolderColor}
                     value={url}
                     onChangeText={(text)=> setUrl(text)}
                     style={{

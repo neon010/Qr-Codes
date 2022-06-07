@@ -1,5 +1,5 @@
-import React,{useState} from "react";
-import {View,TouchableOpacity,StyleSheet} from "react-native";
+import React,{useEffect, useState} from "react";
+import {View,TouchableOpacity,StyleSheet,Dimensions} from "react-native";
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
@@ -8,9 +8,11 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import RNQRGenerator from 'rn-qr-generator';
 import MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
 import Ionicons  from 'react-native-vector-icons/Ionicons';
-
 import { LogBox } from 'react-native'
 import { addScanHistory } from "../writingFile/createFile";
+import { Box } from "../components/Box";
+import { colors } from "../styles/colors";
+import { showToastWithGravity } from "../utils/toastAndroid";
 
 
 
@@ -31,48 +33,66 @@ const options = {
 type Props = NativeStackScreenProps<StackParamList>;
 
 export const ScanScreen = ({navigation}:Props) =>{
-  const [detectImageUri, setDetectImageUri] = useState<any>(null);
-  const [detectedValues, setDetectedValues] = useState<any>([]);
-  const [FlashMode, setFlashMode] = useState(false)
+  const [FlashMode, setFlashMode] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
+
+
+
+    useEffect(()=>{
+      if(errMsg){
+        showToastWithGravity(errMsg)
+      }
+    },[errMsg])
 
     const onSuccess = (e:any) => {
-        console.log(e.data)
+      try {
         const scanData = e.data;
         addScanHistory({content:scanData})
         navigation.navigate("SaveQrCodeData", {
           scanData
         })
+      } catch (error) {
+        setErrMsg("Cannot detect value")
+      }
+
     };
 
     const onPick = () => {
-      //@ts-expect-error
-      launchImageLibrary(options, (response:any) => {
-        const uriPath=response.assets[0].uri;
-        setDetectImageUri({uri: uriPath});
-        RNQRGenerator.detect({uri: uriPath})
-          .then((res) => {
-            console.log('Detected', res);
-            if (res.values.length === 0) {
-              setDetectedValues(['Code not found']);
-            } else {
-              const data = res.values[0];
-              setDetectedValues(data);
-              addScanHistory({content:data})
-              navigation.navigate("SaveQrCodeData", {
-                scanData:data
-              })
-            }
-          })
-          .catch((err) => {
-            console.log('Cannot detect', err);
-          });
-      });
+      try {
+        //@ts-expect-error
+        launchImageLibrary(options, (response:any) => {
+
+          if(response.assets){
+            const uriPath=response.assets[0].uri;
+
+            RNQRGenerator.detect({uri: uriPath})
+            .then((res) => {
+              if (res.values.length === 0) {
+                setErrMsg("scan value is empty")
+              } else {
+                const data = res.values[0];
+
+                addScanHistory({content:data})
+
+                navigation.navigate("SaveQrCodeData", {
+                  scanData:data
+                })
+              }
+            })
+            .catch((err) => {
+              setErrMsg("Cannot detect value")
+            });
+          }
+        });
+      } catch (error) {
+        setErrMsg("Scanable File not found")
+      }
+
     };
 
- 
 
     return (
-      <>
+      <View style={{flex:1}}>
         <QRCodeScanner
           onRead={onSuccess}
           reactivate={true}
@@ -97,41 +117,35 @@ export const ScanScreen = ({navigation}:Props) =>{
           }}
           flashMode={FlashMode ? RNCamera.Constants.FlashMode.on : RNCamera.Constants.FlashMode.off}
           bottomContent={
-            <View style={{position:'absolute',right:70,bottom:200}}>
-                <TouchableOpacity style={styles.buttonTouchable} onPress={()=> setFlashMode(!FlashMode)}>
-                  <Ionicons name="md-flashlight" size={32} color="#fff"/>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonTouchable} onPress={onPick}>
-                  <MaterialIcons name="insert-photo" size={32} color="#fff"/>  
-                </TouchableOpacity>
-            </View>
+            <>
+              <View style={{position:'absolute',bottom:100}}>
+                <View style={{flexDirection:"row"}}>
+                  <TouchableOpacity style={{...styles.buttonTouchable, marginRight:15}} onPress={()=> setFlashMode(!FlashMode)}>
+                      <Ionicons name="md-flashlight" size={20} color={colors.whiteColor}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.buttonTouchable} onPress={onPick}>
+                      <MaterialIcons name="insert-photo" size={20} color={colors.whiteColor}/>  
+                    </TouchableOpacity>
+                </View>
+              </View>
+              <View style={{position:'absolute',bottom:((Dimensions.get("screen").height/2)-80)}}>
+                <Box/>
+              </View>
+
+            </>
           }
         />
-      </>
+      </View>
     )
 }
 
 
 const styles = StyleSheet.create({
-    centerText: {
-      flex: 1,
-      fontSize: 18,
-      padding: 32,
-      color: '#777'
-    },
-    textBold: {
-      fontWeight: '500',
-      color: '#000'
-    },
-    buttonText: {
-      fontSize: 21,
-      color: 'rgb(0,122,255)'
-    },
     buttonTouchable: {
       padding: 16,
       borderWidth:2,
-      borderColor:"green",
-      backgroundColor:"green",
+      borderColor:colors.primaryColor,
+      backgroundColor:colors.primaryColor,
       borderRadius:50,
       marginBottom:15
     }

@@ -7,6 +7,7 @@ import { ScreenLabel } from "../components/ScreenLabel";
 import { StackScreenHeader } from "../components/StackScreenHeader";
 import { globalStyle } from "../styles/globalStyles";
 import { isPhoneNumber } from "../utils/scanDataTypes";
+import { colors } from "../styles/colors";
 
 
 type Props = NativeStackScreenProps<StackParamList>;
@@ -23,11 +24,11 @@ export const WhatsAppQrCreate = ({navigation}:Props) =>{
                 navigation={navigation}
                 qrData={isPhoneNumber(value) && value}
             />
-            <ScreenLabel screenIcon={<Ionicons name="logo-whatsapp" size={24} color="#00acee"/>}/>
+            <ScreenLabel screenIcon={<Ionicons name="logo-whatsapp" size={24} color={colors.whatsAppColor}/>}/>
             <View style={{marginTop:30, marginLeft:15, marginRight:15,...globalStyle.displayItemInCenter}}>
                 <TextInput
                     placeholder="Enter a valid phone number"
-                    placeholderTextColor="grey"
+                    placeholderTextColor={colors.placeHolderColor}
                     keyboardType="numeric"
                     value={value}
                     onChangeText={(text)=> {

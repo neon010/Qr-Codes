@@ -7,13 +7,14 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import { ScreenLabel } from "../components/ScreenLabel";
 import { StackScreenHeader } from "../components/StackScreenHeader";
 import { globalStyle } from "../styles/globalStyles";
+import { colors } from "../styles/colors";
 
 type Props = NativeStackScreenProps<StackParamList>;
 
 export const ClipboardQrCreate = ({navigation}:Props) =>{
 
     const [clipboardText, setClipboardText] = useState("");
-    const [imageUri, setImageUri] = useState<any>(null);
+
 
     useEffect(()=>{
         const getClipboardText =  async () =>{
@@ -29,13 +30,13 @@ export const ClipboardQrCreate = ({navigation}:Props) =>{
                 navigation={navigation}
                 qrData={clipboardText}
             />
-            <ScreenLabel screenIcon={<Ionicons name="clipboard-outline" size={24} color="#00acee"/>}/>
+            <ScreenLabel screenIcon={<Ionicons name="clipboard-outline" size={24} color={colors.clipboardIconColor}/>}/>
             <View style={{marginTop:30, marginLeft:15, marginRight:15}}>
                 <TextInput
                     placeholder="Enter some text"
                     multiline={true}
                     numberOfLines={5}
-                    placeholderTextColor="grey"
+                    placeholderTextColor={colors.placeHolderColor}
                     value={clipboardText}
                     onChangeText={(text)=> setClipboardText(text)}
                     style={{

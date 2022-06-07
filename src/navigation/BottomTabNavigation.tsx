@@ -3,10 +3,10 @@ import {View, Text} from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ScanScreen } from "../screens/ScanScreen";
 import { CreateScreen } from "../screens/CreateScreen";
-import { HistoryScreen } from "../screens/HistoryScreen";
 import Ionicons  from 'react-native-vector-icons/Ionicons';
 import FontAwesome  from 'react-native-vector-icons/FontAwesome';
 import { TopTabNavigation } from "./TopTabNavigation";
+import { colors } from "../styles/colors";
 
 
 export type BottomTabParamList = {
@@ -26,10 +26,10 @@ export const BottomTabNavigation = () =>{
         screenOptions={{
             tabBarShowLabel:false,
             tabBarStyle: {
-            backgroundColor: 'white',
+            backgroundColor: colors.whiteColor,
             position: 'absolute',
             height: 70,
-            shadowColor: '#000',
+            shadowColor: colors.primaryheadingColor,
             shadowOpacity: 0.06,
             shadowOffset: {
                 width: 10,
@@ -48,7 +48,7 @@ export const BottomTabNavigation = () =>{
                         return (
                             <View style={{width:80, justifyContent:"center", alignItems:"center"}}>
                                 <Ionicons name="scan" size={24}/>
-                                <Text style={{fontSize: 12}}>Sacn</Text>
+                                <Text style={{fontSize: 12, color:colors.primaryheadingColor}}>Sacn</Text>
                             </View>
                         )
                     }
@@ -63,7 +63,7 @@ export const BottomTabNavigation = () =>{
                         return (
                             <View style={{width:80, justifyContent:"center", alignItems:"center"}}>
                                 <Ionicons name="create-outline" size={24}/>
-                                <Text style={{fontSize: 12}}>Create</Text>
+                                <Text style={{fontSize: 12,color:colors.primaryheadingColor}}>Create</Text>
                             </View>
                         )
                     }
@@ -78,7 +78,7 @@ export const BottomTabNavigation = () =>{
                         return (
                             <View style={{width:80, justifyContent:"center", alignItems:"center"}}>
                                 <FontAwesome name="history" size={24}/>
-                                <Text style={{fontSize: 12}}>History</Text>
+                                <Text style={{fontSize: 12,color:colors.primaryheadingColor}}>History</Text>
                             </View>
                         )
                     }

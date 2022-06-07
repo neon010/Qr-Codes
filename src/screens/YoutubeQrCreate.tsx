@@ -6,6 +6,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import { ScreenLabel } from "../components/ScreenLabel";
 import { StackScreenHeader } from "../components/StackScreenHeader";
 import { globalStyle } from "../styles/globalStyles";
+import { colors } from "../styles/colors";
 
 
 
@@ -22,13 +23,13 @@ export const YoutubeQrCreate = ({navigation}:Props) =>{
                 navigation={navigation}
                 qrData={qrData}
             />
-            <ScreenLabel screenIcon={<Ionicons name="logo-youtube" size={24} color="#FF0000"/>}/>
+            <ScreenLabel screenIcon={<Ionicons name="logo-youtube" size={24} color={colors.youtubeColor}/>}/>
             <View style={{...globalStyle.displayItemInCenter, marginTop:15}}>
                 <View style={{...globalStyle.displayItemInRow}}>
                     <Pressable 
                     style={{
-                        backgroundColor: type === "URL" ? "green": "transparent",
-                        width:100,
+                        backgroundColor: type === "URL" ? colors.primaryColor: "transparent",
+                        width:110,
                         height:40,
                         marginRight:10,
                         borderRadius:25,
@@ -43,14 +44,14 @@ export const YoutubeQrCreate = ({navigation}:Props) =>{
                     >
                         <Text 
                         style={{
-                            color: type === "URL" ? "#fff":"#000"
+                            color: type === "URL" ? colors.whiteColor:colors.primaryheadingColor
                         }}
                         >URL</Text>
                     </Pressable>
                     <Pressable 
                     style={{
-                        backgroundColor: type === "videoId" ? "green": "transparent",
-                        width:100,
+                        backgroundColor: type === "Video Id" ? colors.primaryColor: "transparent",
+                        width:110,
                         height:40,
                         marginRight:10,
                         borderRadius:25,
@@ -58,21 +59,21 @@ export const YoutubeQrCreate = ({navigation}:Props) =>{
                         justifyContent:'center'
                     }}
                     onPress={()=> {
-                        setType("videoId")
+                        setType("Video Id")
                         setQrData("")
                         setText("")
                     }}
                     >
                         <Text
                         style={{
-                            color: type === "videoId" ? "#fff":"#000"
+                            color: type === "Video Id" ? colors.whiteColor:colors.primaryheadingColor
                         }}
                         >Video ID</Text>
                     </Pressable>
                     <Pressable 
                     style={{
-                        backgroundColor: type === "channelName" ? "green": "transparent",
-                        width:100,
+                        backgroundColor: type === "Channel Name" ? colors.primaryColor: "transparent",
+                        width:110,
                         height:40,
                         marginRight:10,
                         borderRadius:25,
@@ -80,28 +81,28 @@ export const YoutubeQrCreate = ({navigation}:Props) =>{
                         justifyContent:'center'
                     }}
                     onPress={()=> {
-                        setType("channelName")
+                        setType("Channel Name")
                         setText("")
                         setText("")
                     }}>
                         <Text
                         style={{
-                            color: type === "channelName" ? "#fff":"#000"
+                            color: type === "Channel Name" ? colors.whiteColor:colors.primaryheadingColor
                         }}
-                        >Channel Id</Text>
+                        >Channel Name</Text>
                     </Pressable>
                 </View>
             </View>
             <View style={{marginTop:30, marginLeft:15, marginRight:15}}>
                 <TextInput
                     placeholder={type}
-                    placeholderTextColor="grey"
+                    placeholderTextColor={colors.placeHolderColor}
                     value={text}
                     onChangeText={(text)=> {
                         setText(text)
-                        if(type === "videoId"){
+                        if(type === "Video Id"){
                             setQrData(`https://www.youtube.com/watch?v=${text}`)
-                        }else if(type === "channelName"){
+                        }else if(type === "Channel Name"){
                             setQrData(`https://www.youtube.com/channel/${text}`)
                         }else{
                             setQrData(text)

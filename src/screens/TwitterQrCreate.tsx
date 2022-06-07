@@ -6,6 +6,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import { ScreenLabel } from "../components/ScreenLabel";
 import { StackScreenHeader } from "../components/StackScreenHeader";
 import { globalStyle } from "../styles/globalStyles";
+import { colors } from "../styles/colors";
 
 
 
@@ -23,12 +24,12 @@ export const TwitterQrCreate = ({navigation}:Props) =>{
                 navigation={navigation}
                 qrData={qrData}
             />
-            <ScreenLabel screenIcon={<Ionicons name="logo-twitter" size={24} color="#00acee"/>}/>
+            <ScreenLabel screenIcon={<Ionicons name="logo-twitter" size={24} color={colors.twitterColor}/>}/>
             <View style={{...globalStyle.displayItemInCenter}}>
                 <View style={{...globalStyle.displayItemInRow, marginTop:15}}>
                     <Pressable 
                     style={{
-                        backgroundColor: type === "URL" ? "green": "transparent",
+                        backgroundColor: type === "URL" ? colors.primaryColor: "transparent",
                         width:100,
                         height:40,
                         marginRight:10,
@@ -42,11 +43,11 @@ export const TwitterQrCreate = ({navigation}:Props) =>{
                         setQrData("")
                     }}
                     >
-                        <Text style={{color: type === "URL" ? "#fff":"#000" }}>URL</Text>
+                        <Text style={{color: type === "URL" ? colors.whiteColor:colors.primaryheadingColor }}>URL</Text>
                     </Pressable>
                     <Pressable 
                     style={{
-                        backgroundColor: type === "userName" ? "green": "transparent",
+                        backgroundColor: type === "User Name" ? colors.primaryColor: "transparent",
                         width:100,
                         height:40,
                         marginRight:10,
@@ -55,23 +56,23 @@ export const TwitterQrCreate = ({navigation}:Props) =>{
                         justifyContent:'center'
                     }}
                     onPress={()=> {
-                        setType("userName");
+                        setType("User Name");
                         setText("");
                         setQrData("");
                     }}
                     >
-                        <Text style={{color: type === "userName" ? "#fff":"#000"}}>UserName</Text>
+                        <Text style={{color: type === "User Name" ? colors.whiteColor:colors.primaryheadingColor}}>User Name</Text>
                     </Pressable>
                 </View>
             </View>
             <View style={{marginTop:30, marginLeft:15, marginRight:15}}>
                 <TextInput
                     placeholder={type}
-                    placeholderTextColor="grey"
+                    placeholderTextColor={colors.placeHolderColor}
                     value={text}
                     onChangeText={(text)=> {
                         setText(text)
-                        if(type === "userName"){
+                        if(type === "User Name"){
                             setQrData(`https://twitter.com/${text}`)
                         }else{
                             setQrData(text)

@@ -3,10 +3,10 @@ import {View, Text, Pressable, TextInput} from "react-native";
 import Ionicons  from 'react-native-vector-icons/Ionicons';
 import { StackParamList } from "../navigation/StackNavigation";
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {generateQr} from "../utils/generateQr"
 import { ScreenLabel } from "../components/ScreenLabel";
 import { StackScreenHeader } from "../components/StackScreenHeader";
 import { globalStyle } from "../styles/globalStyles";
+import { colors } from "../styles/colors";
 
 type Props = NativeStackScreenProps<StackParamList>;
 
@@ -23,12 +23,12 @@ export const FacebookQrCreate = ({navigation}:Props) =>{
             navigation={navigation}
             qrData={qrData}
             />
-            <ScreenLabel screenIcon={<Ionicons name="logo-facebook" size={24} color="#00acee"/>}/>
+            <ScreenLabel screenIcon={<Ionicons name="logo-facebook" size={24} color={colors.facebookColor}/>}/>
             <View style={{...globalStyle.displayItemInCenter}}>
                 <View style={{...globalStyle.displayItemInRow,marginTop:10}}>
                     <Pressable 
                     style={{
-                        backgroundColor: type === "URL" ? "green": "transparent",
+                        backgroundColor: type === "URL" ? colors.primaryColor: "transparent",
                         width:100,
                         height:40,
                         marginRight:10,
@@ -44,13 +44,13 @@ export const FacebookQrCreate = ({navigation}:Props) =>{
                     >
                         <Text 
                         style={{
-                            color: type === "URL" ? "#fff":"#000"
+                            color: type === "URL" ? colors.whiteColor:colors.primaryheadingColor
                         }}
                         >URL</Text>
                     </Pressable>
                     <Pressable 
                     style={{
-                        backgroundColor: type === "FacebookId" ? "green": "transparent",
+                        backgroundColor: type === "Facebook Id" ? colors.primaryColor: "transparent",
                         width:100,
                         height:40,
                         marginRight:10,
@@ -59,14 +59,14 @@ export const FacebookQrCreate = ({navigation}:Props) =>{
                         justifyContent:'center'
                     }}
                     onPress={()=> {
-                        setType("FacebookId")
+                        setType("Facebook Id")
                         setText("");
                         setQrData("")
                     }}
                     >
                         <Text
                         style={{
-                            color: type === "FacebookId" ? "#fff":"#000"
+                            color: type === "Facebook Id" ? colors.whiteColor:colors.primaryheadingColor
                         }}
                         >FacebookId</Text>
                     </Pressable>
@@ -75,11 +75,11 @@ export const FacebookQrCreate = ({navigation}:Props) =>{
             <View style={{marginTop:30, marginLeft:15, marginRight:15}}>
                 <TextInput
                     placeholder={type}
-                    placeholderTextColor="grey"
+                    placeholderTextColor={colors.placeHolderColor}
                     value={text}
                     onChangeText={(text)=> {
                         setText(text)
-                        if(type === "FacebookId"){
+                        if(type === "Facebook Id"){
                             setQrData(`https://www.facebook.com/${text}`)
                         }else{
                             setQrData(text)

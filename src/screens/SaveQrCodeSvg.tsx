@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import {View, Text, Image,StyleSheet,PermissionsAndroid,Pressable,ToastAndroid} from "react-native";
+import {View, Text, Image,StyleSheet,PermissionsAndroid,Pressable} from "react-native";
 import { StackParamList } from "../navigation/StackNavigation";
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import Ionicons  from 'react-native-vector-icons/Ionicons';
 import RNFS from "react-native-fs"
 import Share from 'react-native-share';
 import { createQrCodeHistory } from "../writingFile/createFile";
+import { globalStyle } from "../styles/globalStyles";
+import { colors } from "../styles/colors";
+import { showToastWithGravity } from "../utils/toastAndroid";
 
 
 type Props = NativeStackScreenProps<StackParamList>;
@@ -18,13 +21,7 @@ export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
     const {uri,content} = route.params;
 
 
-    const showToastWithGravity = () => {
-        ToastAndroid.showWithGravity(
-          "Photo saved in pictures folder",
-          ToastAndroid.SHORT,
-          ToastAndroid.CENTER
-        );
-    };
+
 
     return (
         <View>
@@ -33,32 +30,47 @@ export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
                 flexDirection:"row", 
                 justifyContent:"space-between", 
                 alignItems:"center",
-                backgroundColor:"#fff",
-                padding:15
+                padding:10
             }}
             >
-                <Pressable onPress={()=>navigation.goBack()}>
-                    <Ionicons 
-                    name="arrow-back" 
-                    size={24}
-                    />
+                <Pressable 
+                style={{
+                    ...globalStyle.displayItemInSpaceBetween
+                }}
+                onPress={()=>navigation.goBack()}>
+                    <Ionicons name="arrow-back" size={24}/>
+                    <Text style={{marginLeft:10}}>Back</Text>
                 </Pressable>
             </View>
+
             <View style={{justifyContent:"center", alignItems:"center", marginTop:50}}>
                 <Image 
                 source={{uri}}
                 style={{
                     backgroundColor: '#F3F3F3',
-                    width: 300,
+                    width: 250,
                     height: 250,
                     borderWidth: StyleSheet.hairlineWidth,
                     marginBottom: 16,
+                    shadowColor: '#000',
+                    shadowOpacity: 0.06,
+                    shadowOffset: {
+                        width: 10,
+                        height: 10
+                    },
                 }}
                 />
             </View>
-            <View style={{flexDirection:'row', justifyContent:"center", alignItems:"center", marginTop:50}}>
+            <View style={{flexDirection:'row', justifyContent:"center", alignItems:"center", marginTop:20}}>
                 <Pressable 
-                style={{marginRight:20, padding:10, backgroundColor:"black"}}
+                style={{
+                    marginRight:20,
+                    backgroundColor:colors.primaryheadingColor, 
+                    width:75, 
+                    height:35, 
+                    ...globalStyle.displayItemInCenter,
+                    borderRadius:30
+                }}
                 onPress={async()=>{
                     console.log("save");
                     try {
@@ -91,7 +103,7 @@ export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
 
                             createQrCodeHistory({uri:newPath,content})
 
-                            showToastWithGravity()
+                            showToastWithGravity("QR code image saved in pictures folder")
 
                         } else {
                             console.log("Camera permission denied");
@@ -100,7 +112,7 @@ export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
                         setMessage("Coudld not able to save file")
                     }
                 }}>
-                    <Text style={{color:"#fff"}}>Save</Text>
+                    <Text style={{color:colors.whiteColor}}>Save</Text>
                 </Pressable>
                 <Pressable
                 onPress={()=>{
@@ -115,9 +127,9 @@ export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
                       err && console.log(err);
                     });
                 }}
-                style={{marginRight:20, padding:10, backgroundColor:"black"}}
+                style={{backgroundColor:colors.primaryheadingColor, width:75, height:35, ...globalStyle.displayItemInCenter,borderRadius:30}}
                 >
-                    <Text style={{color:"#fff"}}>Share</Text>
+                    <Text style={{color:colors.whiteColor}}>Share</Text>
                 </Pressable>
             </View>
         </View>

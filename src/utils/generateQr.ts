@@ -11,18 +11,18 @@ export const generateQr = async (text:string) => {
 
     await RNQRGenerator.generate({
       value: text,
-      height: 300,
-      width: 300,
+      height: 250,
+      width: 250,
       base64: true,
       backgroundColor: 'white',
       color: 'black',
       correctionLevel: 'M',
-      // padding: {
-      //   top: 0,
-      //   left: 0,
-      //   bottom: 0,
-      //   right: 0,
-      // }
+      padding: {
+        top: 10,
+        left: 10,
+        bottom: 10,
+        right: 10,
+      }
     })
       .then((response) => {
         uri = response.uri;

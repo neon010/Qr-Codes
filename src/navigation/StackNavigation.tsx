@@ -1,8 +1,6 @@
 import React from "react";
-import {View, Text} from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { BottomTabNavigation, BottomTabParamList } from "./BottomTabNavigation";
-import { GenQrCodeScreen } from "../screens/GenQrCodeScreen";
 import { SaveQrCodeData } from "../screens/SaveQrCodeData";
 import { TextQrCreate } from "../screens/TextQrCreate";
 import { ClipboardQrCreate } from "../screens/ClipboardQrCreate";
@@ -59,13 +57,6 @@ export const StackNavigation = () =>{
             <Stack.Screen
                 name="Scan" 
                 component={BottomTabNavigation}
-                options={{
-                    headerShown:false
-                }} 
-            />
-            <Stack.Screen
-                name="GenQrCodeScreen" 
-                component={GenQrCodeScreen} 
                 options={{
                     headerShown:false
                 }} 
