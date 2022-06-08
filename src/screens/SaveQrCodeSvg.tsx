@@ -64,12 +64,8 @@ export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
             <View style={{flexDirection:'row', justifyContent:"center", alignItems:"center", marginTop:20}}>
                 <Pressable 
                 style={{
-                    marginRight:20,
-                    backgroundColor:colors.primaryheadingColor, 
-                    width:75, 
-                    height:35, 
-                    ...globalStyle.displayItemInCenter,
-                    borderRadius:30
+                    ...globalStyle.pilledShapeButtonSave,
+
                 }}
                 onPress={async()=>{
                     console.log("save");
@@ -127,7 +123,7 @@ export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
                       err && console.log(err);
                     });
                 }}
-                style={{backgroundColor:colors.primaryheadingColor, width:75, height:35, ...globalStyle.displayItemInCenter,borderRadius:30}}
+                style={{...globalStyle.pilledShapeButtonSave}}
                 >
                     <Text style={{color:colors.whiteColor}}>Share</Text>
                 </Pressable>

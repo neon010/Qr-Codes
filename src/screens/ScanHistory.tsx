@@ -1,6 +1,6 @@
-import React,{useState,useCallback} from "react"
-import { View,Text,ScrollView, Pressable } from "react-native"
-import { getScanHistory } from "../writingFile/createFile"
+import React,{useState, useCallback} from "react"
+import { View,Text,ScrollView, Pressable,Alert } from "react-native"
+import { deleteScanHistory, getScanHistory } from "../writingFile/createFile"
 import Ionicons  from 'react-native-vector-icons/Ionicons';
 import { scanDataTypes } from "../utils/scanDataTypes";
 import { globalStyle } from "../styles/globalStyles";
@@ -27,6 +27,27 @@ export const ScanHistory = ({navigation}:{navigation:any})=>{
         },[])
     )
 
+    const confirmDelete = (id:string) =>
+        Alert.alert(
+        "Confirm delete",
+        "",
+        [
+            {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+            },
+            { text: "OK", onPress: async() => {
+                const createdHistory = await deleteScanHistory(id);
+                if(createdHistory.data){
+                    setScanHistory(createdHistory.data)
+                }else{
+                    setErrMSg("history is empty")
+                }
+                
+            } }
+        ]
+    );
 
 
     return (
@@ -36,41 +57,46 @@ export const ScanHistory = ({navigation}:{navigation:any})=>{
                     <View
                     style={{height:400,...globalStyle.displayItemInCenter}}
                     >
-                        <Text style={{color:colors.primaryheadingColor}}>{errMsg}</Text>
+                        <Text style={globalStyle.primaryTextStyle}>{errMsg}</Text>
                     </View>
                 ):(
                     Object.keys(scanHistory).length > 0 ? (
                         Object.keys(scanHistory).map((key)=>{
                             return (
-                                <View key={key} style={{...globalStyle.displayItemInRow, padding:10}}>
+                                <Pressable 
+                                onPress={()=>
+                                    navigation.navigate("SaveQrCodeData", {
+                                        scanData:scanHistory[key].content
+                                    })
+                                }
+                                key={key} style={{...globalStyle.displayItemInRow, padding:10}}
+                                >
                                     <View style={{padding:10, backgroundColor:colors.primaryColor, borderRadius:5,marginRight:10}}>
                                         <Ionicons name={scanDataTypes(scanHistory[key].content).logo} size={24} color="#fff"/>
                                     </View>
                                     <View style={{...globalStyle.displayItemInSpaceBetween,width:"88%"}}>
                                         <View>
-                                            <Text style={{color:colors.primaryheadingColor}}>{scanHistory[key].content}</Text>
-                                            <Text style={{color:colors.secondaryHeadingColor}}>{(new Date(scanHistory[key].time)).toLocaleDateString()}</Text>
+                                            <Text style={globalStyle.primaryTextStyle}>{scanHistory[key].content}</Text>
+                                            <Text style={globalStyle.secondaryTextStyle}>{(new Date(scanHistory[key].time)).toLocaleDateString()}</Text>
                                         </View>
                                         <View>
                                             <Pressable
                                             onPress={()=>{
-                                                navigation.navigate("SaveQrCodeData", {
-                                                    scanData:scanHistory[key].content
-                                                })
+                                                confirmDelete(key)
                                             }} 
                                             >
-                                                <Ionicons name="arrow-forward-outline" size={24}/>
+                                                <Ionicons name="trash" size={24}/>
                                             </Pressable>
                                         </View>
                                     </View>
-                                </View>
+                                </Pressable>
                             )
                         })
                     ):(
                     <View
                     style={{height:400,...globalStyle.displayItemInCenter}}
                     >
-                        <Text style={{color:colors.primaryheadingColor}}
+                        <Text style={globalStyle.primaryTextStyle}
                         >Scan history is empty</Text>
                     </View>
                     )

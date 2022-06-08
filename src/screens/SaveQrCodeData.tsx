@@ -34,7 +34,7 @@ export const SaveQrCodeData = ({navigation,route}:Props) =>{
                 style={{flexDirection:'row', alignItems:'center'}}
                 onPress={()=>navigation.goBack()}>
                     <Ionicons name="arrow-back" size={24}/>
-                    <Text style={{marginLeft:5,color:colors.primaryColor}}>Back</Text>
+                    <Text style={{marginLeft:5,color:colors.primaryheadingColor}}>Back</Text>
                 </Pressable>
             </View>           
             <View 
@@ -54,14 +54,14 @@ export const SaveQrCodeData = ({navigation,route}:Props) =>{
             }}>
                 <View style={{padding:10}}>
                     <View style={{position:'relative', left:"40%",top:"-12%" }}>
-                        <View style={{width:50, height:50,borderRadius:30, backgroundColor:colors.primaryColor, alignItems:"center", justifyContent:"center"}}>
-                            <Ionicons name={scanDataTypes(scanData).logo} size={24} color="#FF0000"/>
+                        <View style={{width:50, height:50,borderRadius:30, backgroundColor:colors.primaryColor, ...globalStyle.displayItemInCenter}}>
+                            <Ionicons name={scanDataTypes(scanData).logo} size={24} color={colors.whiteColor}/>
                         </View>
                     </View>
-                    <View style={{justifyContent:'center', alignItems:"center",marginTop:20, marginLeft:10,marginRight:10}}>
-                        <Text style={{color:colors.primaryheadingColor}}>{scanData}</Text>
+                    <View style={{...globalStyle.displayItemInCenter,marginTop:20, marginLeft:10,marginRight:10}}>
+                        <Text style={globalStyle.primaryTextStyle}>{scanData}</Text>
                     </View>
-                    <View style={{justifyContent:'center', alignItems:"center", marginTop:20,}}>
+                    <View style={{...globalStyle.displayItemInCenter, marginTop:20,}}>
                         <View style={{
                             marginTop:30, 
                             marginLeft:10,
@@ -84,7 +84,7 @@ export const SaveQrCodeData = ({navigation,route}:Props) =>{
                                                 Alert.alert(`Don't know how to open this URL: ${url}`);
                                             }
                                         }}      
-                                        style={{width:80, height:35,marginRight:15, backgroundColor:colors.primaryColor, borderRadius:25, justifyContent:"center", alignItems:"center"}}>
+                                        style={globalStyle.pilledShapeButtonSave}>
                                             <Text style={{color:colors.whiteColor}}>Whatsapp</Text>
                                         </Pressable>
                                     )
@@ -103,7 +103,7 @@ export const SaveQrCodeData = ({navigation,route}:Props) =>{
                                                 Alert.alert(`Don't know how to open this URL: ${url}`);
                                             }
                                         }}      
-                                        style={{width:80, height:35,marginRight:15, backgroundColor:colors.primaryColor, borderRadius:25, justifyContent:"center", alignItems:"center"}}>
+                                        style={globalStyle.pilledShapeButtonSave}>
                                             <Text style={{color:colors.whiteColor}}>Open Link</Text>
                                         </Pressable>
                                     )
@@ -113,7 +113,7 @@ export const SaveQrCodeData = ({navigation,route}:Props) =>{
                                 Clipboard.setString(scanData)
                                 showToastWithGravity("Copied to clipboard");
                             }}
-                            style={{width:80, height:35,marginRight:15, backgroundColor:colors.primaryColor, borderRadius:25, justifyContent:"center", alignItems:"center"}}>
+                            style={globalStyle.pilledShapeButtonSave}>
                                 <Text style={{color:colors.whiteColor}}>Copy</Text>
                             </Pressable>
                             <Pressable 
@@ -129,7 +129,7 @@ export const SaveQrCodeData = ({navigation,route}:Props) =>{
                                   err && console.log(err);
                                 });
                             }}
-                            style={{width:80, height:35,marginRight:15, backgroundColor:colors.primaryColor, borderRadius:25, justifyContent:"center", alignItems:"center"}}>
+                            style={globalStyle.pilledShapeButtonSave}>
                                 <Text style={{color:colors.whiteColor}}>Share</Text>
                             </Pressable>
                         </View>

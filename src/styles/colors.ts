@@ -1,8 +1,8 @@
 export const colors={
     primaryColor:"green",
     secondaryColor:"red",
-    primaryheadingColor:"#111827",
-    secondaryHeadingColor:"#334155",
+    primaryheadingColor:"#525252",
+    secondaryHeadingColor:"#78716c",
     whiteColor:"#fff",
     placeHolderColor:"#9ca3af",
     youtubeColor:"#FF0000",

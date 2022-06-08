@@ -1,18 +1,18 @@
 export const scanDataTypes = (data:String):any=>{
     if(isURL(data)){
         const URL = data;
-        if(URL.includes("twitter")){
+        if(URL && URL.includes("twitter")){
             return {type:"URL", domain:"twitter",logo:"logo-twitter"}
-        }else if(URL.includes("youtube")){
+        }else if(URL &&  URL.includes("youtube")){
             return {type:"URL", domain:"youtube",logo:"logo-youtube"}
-        }else if(URL.includes("facebook")){
+        }else if(URL &&  URL.includes("facebook")){
             return {type:"URL", domain:"facebook",logo:"logo-facebook"}
         }else{
             return {type:"URL", domain:"URL",logo:"link-outline"}
         }
-    }else if(isPhoneNumber(data)){
+    }else if(data && isPhoneNumber(data)){
         return {type:"PHONE",logo:"ios-phone-portrait-sharp"}
-    }else if(isEmail(data)){
+    }else if(data && isEmail(data)){
         return {type:"EMAIL",logo:"mail-outline"}
     }else{
         return {type:"Text",logo:"md-text-outline"}

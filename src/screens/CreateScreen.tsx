@@ -5,6 +5,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Ionicons  from 'react-native-vector-icons/Ionicons';
 import { colors } from "../styles/colors";
+import { globalStyle } from "../styles/globalStyles";
 
 
 
@@ -69,8 +70,8 @@ export const CreateScreen = ({navigation}:Props) =>{
 
     return (
         <ScrollView style={{marginTop:insets.top}}>
-            <View style={{padding:10,marginBottom:10, backgroundColor:"#fff"}}>
-                <Text style={{fontSize:20, color:"black"}}>Create QR Code</Text>
+            <View style={{padding:16,marginBottom:10, backgroundColor:"#fff"}}>
+                <Text style={globalStyle.primaryTextStyle}>Create QR Code</Text>
             </View>
             <View style={{backgroundColor:"#fff"}}>
                 {
@@ -78,7 +79,7 @@ export const CreateScreen = ({navigation}:Props) =>{
                         return (
                             <Pressable style={styles.button} key={item.name} onPress={()=>navigation.navigate(item.name)}>
                                 <Ionicons name={item.icon} size={24} color={item.Color}/>
-                                <Text style={styles.text}>{item.screenName}</Text>
+                                <Text style={{...globalStyle.primaryTextStyle,marginLeft:20}}>{item.screenName}</Text>
                             </Pressable>
                         )
                     })
@@ -90,10 +91,10 @@ export const CreateScreen = ({navigation}:Props) =>{
 
 const styles = StyleSheet.create({
     button:{
-        flexDirection:"row", 
+        ...globalStyle.displayItemInRow,
         padding:12,
         borderBottomWidth:StyleSheet.hairlineWidth,
-        borderBottomColor:'#ccc'
+        borderBottomColor:'#ccc',
     },
     text:{
         marginLeft:20,

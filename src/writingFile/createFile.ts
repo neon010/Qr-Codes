@@ -137,3 +137,62 @@ export const getCreateQrCodeHistory = async ():Promise<response>=>{
         return {error:"File not Found", code:400}
     }
 }
+
+export const deleteCreatedQrHistory = async (id:string):Promise<response>=>{
+    try {
+        const response = await getCreateQrCodeHistory();
+
+        let myCreateQrCodeHistory:any;
+    
+        if(response.code === 200 && response.data){
+            myCreateQrCodeHistory = response.data
+        }else{
+            throw new Error("File not found")
+        }
+    
+        delete myCreateQrCodeHistory[id]
+
+        RNFS.writeFile(createQrCodeHistoryFile, JSON.stringify(myCreateQrCodeHistory), 'utf8')
+        .then((success) => {
+            console.log('FILE WRITTEN!');
+        })
+        .catch((err) => {
+            console.log(err.message);
+        });
+
+        return {data:myCreateQrCodeHistory, code:200}
+    } catch (error) {
+
+        return {error:"something went wrong", code:400}
+    }
+}
+
+
+export const deleteScanHistory = async (id:string):Promise<response>=>{
+    try {
+        const response = await getScanHistory();
+
+        let myScanHistory:any;
+    
+        if(response.code === 200 && response.data){
+            myScanHistory = response.data
+        }else{
+            throw new Error("File not found")
+        }
+    
+        delete myScanHistory[id]
+
+        RNFS.writeFile(scanQrCodeHistoryFile, JSON.stringify(myScanHistory), 'utf8')
+        .then((success) => {
+            console.log('FILE WRITTEN!');
+        })
+        .catch((err) => {
+            console.log(err.message);
+        });
+
+        return {data:myScanHistory, code:200}
+    } catch (error) {
+
+        return {error:"something went wrong", code:400}
+    }
+}

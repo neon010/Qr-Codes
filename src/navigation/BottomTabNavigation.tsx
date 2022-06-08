@@ -7,6 +7,9 @@ import Ionicons  from 'react-native-vector-icons/Ionicons';
 import FontAwesome  from 'react-native-vector-icons/FontAwesome';
 import { TopTabNavigation } from "./TopTabNavigation";
 import { colors } from "../styles/colors";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { globalStyle } from "../styles/globalStyles";
+
 
 
 export type BottomTabParamList = {
@@ -46,10 +49,11 @@ export const BottomTabNavigation = () =>{
                     headerShown:false,
                     tabBarIcon:({focused})=>{
                         return (
-                            <View style={{width:80, justifyContent:"center", alignItems:"center"}}>
-                                <Ionicons name="scan" size={24}/>
-                                <Text style={{fontSize: 12, color:colors.primaryheadingColor}}>Sacn</Text>
-                            </View>
+                            <TouchableOpacity  activeOpacity={.7} style={{width:80, ...globalStyle.displayItemInCenter}}>
+                                <Ionicons name="scan" size={24} color={focused ? colors.primaryColor:colors.secondaryHeadingColor }/>
+                                <Text 
+                                style={focused ? globalStyle.tabNavigationTextFocused:globalStyle.tabNavigationText}>Sacn</Text>
+                            </TouchableOpacity>
                         )
                     }
                 }}
@@ -61,10 +65,11 @@ export const BottomTabNavigation = () =>{
                     headerShown:false,
                     tabBarIcon:({focused})=>{
                         return (
-                            <View style={{width:80, justifyContent:"center", alignItems:"center"}}>
-                                <Ionicons name="create-outline" size={24}/>
-                                <Text style={{fontSize: 12,color:colors.primaryheadingColor}}>Create</Text>
-                            </View>
+                            <TouchableOpacity  activeOpacity={.7} style={{width:80, ...globalStyle.displayItemInCenter}}>
+                                <Ionicons name="create-outline" size={24} color={focused ? colors.primaryColor:colors.secondaryHeadingColor }/>
+                                <Text 
+                                style={focused ? globalStyle.tabNavigationTextFocused:globalStyle.tabNavigationText}>Create</Text>
+                            </TouchableOpacity>
                         )
                     }
                 }} 
@@ -76,10 +81,11 @@ export const BottomTabNavigation = () =>{
                     headerShown:false,
                     tabBarIcon:({focused})=>{
                         return (
-                            <View style={{width:80, justifyContent:"center", alignItems:"center"}}>
-                                <FontAwesome name="history" size={24}/>
-                                <Text style={{fontSize: 12,color:colors.primaryheadingColor}}>History</Text>
-                            </View>
+                            <TouchableOpacity  activeOpacity={.7} style={{width:80, ...globalStyle.displayItemInCenter}}>
+                                <FontAwesome name="history" size={24} color={focused ? colors.primaryColor:colors.secondaryHeadingColor }/>
+                                <Text 
+                                style={focused ? globalStyle.tabNavigationTextFocused:globalStyle.tabNavigationText}>History</Text>
+                            </TouchableOpacity>
                         )
                     }
                 }}

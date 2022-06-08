@@ -12,9 +12,7 @@ type Props = NativeStackScreenProps<StackParamList>;
 
 export const FacebookQrCreate = ({navigation}:Props) =>{
     const [text, setText] = useState("");
-    const [error,setError] = useState<any>("");
     const [qrData, setQrData] = useState("")
-
     const [type, setType] = useState("URL")
 
     return (
@@ -29,12 +27,7 @@ export const FacebookQrCreate = ({navigation}:Props) =>{
                     <Pressable 
                     style={{
                         backgroundColor: type === "URL" ? colors.primaryColor: "transparent",
-                        width:100,
-                        height:40,
-                        marginRight:10,
-                        borderRadius:25,
-                        alignItems:'center',
-                        justifyContent:'center'
+                        ...globalStyle.pilledShapeButton
                     }}
                     onPress={()=> {
                         setType("URL")
@@ -51,12 +44,7 @@ export const FacebookQrCreate = ({navigation}:Props) =>{
                     <Pressable 
                     style={{
                         backgroundColor: type === "Facebook Id" ? colors.primaryColor: "transparent",
-                        width:100,
-                        height:40,
-                        marginRight:10,
-                        borderRadius:25,
-                        alignItems:'center',
-                        justifyContent:'center'
+                        ...globalStyle.pilledShapeButton
                     }}
                     onPress={()=> {
                         setType("Facebook Id")
@@ -68,7 +56,7 @@ export const FacebookQrCreate = ({navigation}:Props) =>{
                         style={{
                             color: type === "Facebook Id" ? colors.whiteColor:colors.primaryheadingColor
                         }}
-                        >FacebookId</Text>
+                        >Facebook Id</Text>
                     </Pressable>
                 </View>
             </View>

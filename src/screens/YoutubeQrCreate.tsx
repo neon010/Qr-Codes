@@ -29,12 +29,7 @@ export const YoutubeQrCreate = ({navigation}:Props) =>{
                     <Pressable 
                     style={{
                         backgroundColor: type === "URL" ? colors.primaryColor: "transparent",
-                        width:110,
-                        height:40,
-                        marginRight:10,
-                        borderRadius:25,
-                        alignItems:'center',
-                        justifyContent:'center'
+                        ...globalStyle.pilledShapeButton
                     }}
                     onPress={()=> {
                         setType("URL");
@@ -51,12 +46,7 @@ export const YoutubeQrCreate = ({navigation}:Props) =>{
                     <Pressable 
                     style={{
                         backgroundColor: type === "Video Id" ? colors.primaryColor: "transparent",
-                        width:110,
-                        height:40,
-                        marginRight:10,
-                        borderRadius:25,
-                        alignItems:'center',
-                        justifyContent:'center'
+                        ...globalStyle.pilledShapeButton
                     }}
                     onPress={()=> {
                         setType("Video Id")

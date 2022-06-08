@@ -25,7 +25,7 @@ export const WhatsAppQrCreate = ({navigation}:Props) =>{
                 qrData={isPhoneNumber(value) && value}
             />
             <ScreenLabel screenIcon={<Ionicons name="logo-whatsapp" size={24} color={colors.whatsAppColor}/>}/>
-            <View style={{marginTop:30, marginLeft:15, marginRight:15,...globalStyle.displayItemInCenter}}>
+            <View style={{marginTop:30, marginLeft:15, marginRight:15}}>
                 <TextInput
                     placeholder="Enter a valid phone number"
                     placeholderTextColor={colors.placeHolderColor}
@@ -36,10 +36,7 @@ export const WhatsAppQrCreate = ({navigation}:Props) =>{
 
                     }}
                     style={{
-                        padding: 10,
-                        borderWidth:1,
-                        borderRadius:10,
-                        width:275
+                        ...globalStyle.textInput
                     }}
                 />
             </View>

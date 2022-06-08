@@ -47,7 +47,9 @@ export const ScanScreen = ({navigation}:Props) =>{
     const onSuccess = (e:any) => {
       try {
         const scanData = e.data;
-        addScanHistory({content:scanData})
+
+        addScanHistory({content:scanData});
+        
         navigation.navigate("SaveQrCodeData", {
           scanData
         })
@@ -115,7 +117,7 @@ export const ScanScreen = ({navigation}:Props) =>{
             height:"100%",
             width:"100%"
           }}
-          flashMode={FlashMode ? RNCamera.Constants.FlashMode.on : RNCamera.Constants.FlashMode.off}
+          flashMode={FlashMode ? RNCamera.Constants.FlashMode.torch : RNCamera.Constants.FlashMode.off}
           bottomContent={
             <>
               <View style={{position:'absolute',bottom:100}}>
