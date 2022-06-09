@@ -52,7 +52,7 @@ export const BottomTabNavigation = () =>{
                             <TouchableOpacity  activeOpacity={.7} style={{width:80, ...globalStyle.displayItemInCenter}}>
                                 <Ionicons name="scan" size={24} color={focused ? colors.primaryColor:colors.secondaryHeadingColor }/>
                                 <Text 
-                                style={focused ? globalStyle.tabNavigationTextFocused:globalStyle.tabNavigationText}>Sacn</Text>
+                                style={focused ? globalStyle.tabNavigationTextFocused:globalStyle.tabNavigationText}>sacn</Text>
                             </TouchableOpacity>
                         )
                     }
@@ -68,7 +68,7 @@ export const BottomTabNavigation = () =>{
                             <TouchableOpacity  activeOpacity={.7} style={{width:80, ...globalStyle.displayItemInCenter}}>
                                 <Ionicons name="create-outline" size={24} color={focused ? colors.primaryColor:colors.secondaryHeadingColor }/>
                                 <Text 
-                                style={focused ? globalStyle.tabNavigationTextFocused:globalStyle.tabNavigationText}>Create</Text>
+                                style={focused ? globalStyle.tabNavigationTextFocused:globalStyle.tabNavigationText}>create</Text>
                             </TouchableOpacity>
                         )
                     }
@@ -84,7 +84,7 @@ export const BottomTabNavigation = () =>{
                             <TouchableOpacity  activeOpacity={.7} style={{width:80, ...globalStyle.displayItemInCenter}}>
                                 <FontAwesome name="history" size={24} color={focused ? colors.primaryColor:colors.secondaryHeadingColor }/>
                                 <Text 
-                                style={focused ? globalStyle.tabNavigationTextFocused:globalStyle.tabNavigationText}>History</Text>
+                                style={focused ? globalStyle.tabNavigationTextFocused:globalStyle.tabNavigationText}>history</Text>
                             </TouchableOpacity>
                         )
                     }

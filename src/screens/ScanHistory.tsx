@@ -6,6 +6,7 @@ import { scanDataTypes } from "../utils/scanDataTypes";
 import { globalStyle } from "../styles/globalStyles";
 import { useFocusEffect } from '@react-navigation/native';
 import { colors } from "../styles/colors";
+import { truncate } from "../utils/truncateText";
 
 export const ScanHistory = ({navigation}:{navigation:any})=>{
     const [scanHistory, setScanHistory] = useState<any>({});
@@ -51,7 +52,7 @@ export const ScanHistory = ({navigation}:{navigation:any})=>{
 
 
     return (
-        <ScrollView>
+        <ScrollView contentContainerStyle={{marginBottom:50}}>
             {
                 errMsg ? (
                     <View
@@ -76,7 +77,7 @@ export const ScanHistory = ({navigation}:{navigation:any})=>{
                                     </View>
                                     <View style={{...globalStyle.displayItemInSpaceBetween,width:"88%"}}>
                                         <View>
-                                            <Text style={globalStyle.primaryTextStyle}>{scanHistory[key].content}</Text>
+                                            <Text style={globalStyle.primaryTextStyle}>{truncate(scanHistory[key].content)}</Text>
                                             <Text style={globalStyle.secondaryTextStyle}>{(new Date(scanHistory[key].time)).toLocaleDateString()}</Text>
                                         </View>
                                         <View>

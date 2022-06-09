@@ -63,12 +63,7 @@ export const YoutubeQrCreate = ({navigation}:Props) =>{
                     <Pressable 
                     style={{
                         backgroundColor: type === "Channel Name" ? colors.primaryColor: "transparent",
-                        width:110,
-                        height:40,
-                        marginRight:10,
-                        borderRadius:25,
-                        alignItems:'center',
-                        justifyContent:'center'
+                        ...globalStyle.pilledShapeButton
                     }}
                     onPress={()=> {
                         setType("Channel Name")

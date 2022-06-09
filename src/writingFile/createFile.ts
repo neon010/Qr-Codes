@@ -45,10 +45,6 @@ export const addScanHistory = async (data:any):Promise<response> =>{
             console.log(err.message);
         });
 
-        // FileSystem.writeAsStringAsync(filename, 
-        //     JSON.stringify(allBook), 
-        //     {encoding:FileSystem.EncodingType.UTF8}
-        // )
 
         return {data:allScan, code:200}
     } catch (error) {
@@ -107,10 +103,7 @@ export const createQrCodeHistory = async (data:any):Promise<response> =>{
             console.log(err.message);
         });
 
-        // FileSystem.writeAsStringAsync(filename, 
-        //     JSON.stringify(allBook), 
-        //     {encoding:FileSystem.EncodingType.UTF8}
-        // )
+
 
         return {data:allScan, code:200}
     } catch (error) {
