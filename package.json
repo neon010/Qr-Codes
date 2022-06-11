@@ -1,5 +1,5 @@
 {
-  "name": "qrcode",
+  "name": "easy_qr_code_scanner",
   "version": "0.0.1",
   "private": true,
   "scripts": {

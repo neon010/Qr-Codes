@@ -4,6 +4,6 @@ export const showToastWithGravity = (msg:string) => {
     ToastAndroid.showWithGravity(
       msg,
       ToastAndroid.SHORT,
-      ToastAndroid.CENTER
+      ToastAndroid.BOTTOM
     );
 };

@@ -35,12 +35,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.qrcode",
+    package = "com.mksmohan.easyqrcodescanner",
 )
 
 android_resource(
     name = "res",
-    package = "com.qrcode",
+    package = "com.mksmohan.easyqrcodescanner",
     res = "src/main/res",
 )
 

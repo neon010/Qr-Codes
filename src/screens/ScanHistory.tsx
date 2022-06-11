@@ -1,6 +1,6 @@
 import React,{useState, useCallback} from "react"
 import { View,Text,ScrollView, Pressable,Alert } from "react-native"
-import { deleteScanHistory, getScanHistory } from "../writingFile/createFile"
+import { deleteScanHistory, getScanHistory } from "../writingFile/scanQRHistory"
 import Ionicons  from 'react-native-vector-icons/Ionicons';
 import { scanDataTypes } from "../utils/scanDataTypes";
 import { globalStyle } from "../styles/globalStyles";
@@ -24,9 +24,14 @@ export const ScanHistory = ({navigation}:{navigation:any})=>{
                 }
     
             }
-            scanHistory()
+            scanHistory();
+            
+            return ()=>setScanHistory({})
         },[])
     )
+
+
+
 
     const confirmDelete = (id:string) =>
         Alert.alert(
@@ -52,7 +57,7 @@ export const ScanHistory = ({navigation}:{navigation:any})=>{
 
 
     return (
-        <ScrollView contentContainerStyle={{marginBottom:50}}>
+        <ScrollView contentContainerStyle={{marginBottom:50, paddingBottom:100}}>
             {
                 errMsg ? (
                     <View
@@ -70,7 +75,7 @@ export const ScanHistory = ({navigation}:{navigation:any})=>{
                                         scanData:scanHistory[key].content
                                     })
                                 }
-                                key={key} style={{...globalStyle.displayItemInRow, padding:10}}
+                                key={key} style={{...globalStyle.displayItemInRow, padding:10, marginLeft:5, marginRight:8}}
                                 >
                                     <View style={{padding:10, backgroundColor:colors.primaryColor, borderRadius:5,marginRight:10}}>
                                         <Ionicons name={scanDataTypes(scanHistory[key].content).logo} size={24} color="#fff"/>

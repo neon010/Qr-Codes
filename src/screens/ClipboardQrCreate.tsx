@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {View, Text,TextInput,Pressable} from "react-native";
+import {View, TextInput,} from "react-native";
 import Clipboard from '@react-native-clipboard/clipboard';
 import Ionicons  from 'react-native-vector-icons/Ionicons';
 import { StackParamList } from "../navigation/StackNavigation";

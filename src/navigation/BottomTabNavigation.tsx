@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text} from "react-native";
+import {Text} from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ScanScreen } from "../screens/ScanScreen";
 import { CreateScreen } from "../screens/CreateScreen";

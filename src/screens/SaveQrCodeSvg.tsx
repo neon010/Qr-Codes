@@ -5,7 +5,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import Ionicons  from 'react-native-vector-icons/Ionicons';
 import RNFS from "react-native-fs"
 import Share from 'react-native-share';
-import { createQrCodeHistory } from "../writingFile/createFile";
+import { createQrCodeHistory } from "../writingFile/createdQRHistory";
 import { globalStyle } from "../styles/globalStyles";
 import { colors } from "../styles/colors";
 import { showToastWithGravity } from "../utils/toastAndroid";
@@ -43,7 +43,7 @@ export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
                 </Pressable>
             </View>
 
-            <View style={{justifyContent:"center", alignItems:"center", marginTop:50}}>
+            <View style={{...globalStyle.displayItemInCenter, marginTop:50}}>
                 <Image 
                 source={{uri}}
                 style={{
@@ -68,7 +68,6 @@ export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
 
                 }}
                 onPress={async()=>{
-                    console.log("save");
                     try {
                         
                         const granted = await PermissionsAndroid.request(
@@ -102,7 +101,7 @@ export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
                             showToastWithGravity("QR code image saved in pictures folder")
 
                         } else {
-                            console.log("Camera permission denied");
+                            setMessage("Need permission to write on phone")
                         }
                     }catch (error) {
                         setMessage("Coudld not able to save file")

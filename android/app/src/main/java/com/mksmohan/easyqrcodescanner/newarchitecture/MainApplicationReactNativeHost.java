@@ -1,4 +1,4 @@
-package com.qrcode.newarchitecture;
+package com.mksmohan.easyqrcodescanner.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.qrcode.BuildConfig;
-import com.qrcode.newarchitecture.components.MainComponentsRegistry;
-import com.qrcode.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.mksmohan.easyqrcodescanner.BuildConfig;
+import com.mksmohan.easyqrcodescanner.newarchitecture.components.MainComponentsRegistry;
+import com.mksmohan.easyqrcodescanner.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

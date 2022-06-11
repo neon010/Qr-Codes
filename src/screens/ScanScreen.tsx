@@ -9,7 +9,7 @@ import RNQRGenerator from 'rn-qr-generator';
 import MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
 import Ionicons  from 'react-native-vector-icons/Ionicons';
 import { LogBox } from 'react-native'
-import { addScanHistory } from "../writingFile/createFile";
+import { addScanHistory } from "../writingFile/scanQRHistory";
 import { Box } from "../components/Box";
 import { colors } from "../styles/colors";
 import { showToastWithGravity } from "../utils/toastAndroid";
@@ -38,25 +38,25 @@ export const ScanScreen = ({navigation}:Props) =>{
 
 
 
+
     useEffect(()=>{
       if(errMsg){
         showToastWithGravity(errMsg)
       }
     },[errMsg])
 
+
+
     const onSuccess = (e:any) => {
       try {
         const scanData = e.data;
-
-        addScanHistory({content:scanData});
-        
+        addScanHistory({scantime:new Date(),content:scanData})
         navigation.navigate("SaveQrCodeData", {
           scanData
         })
       } catch (error) {
         setErrMsg("Cannot detect value")
       }
-
     };
 
     const onPick = () => {
@@ -98,7 +98,8 @@ export const ScanScreen = ({navigation}:Props) =>{
         <QRCodeScanner
           onRead={onSuccess}
           reactivate={true}
-          reactivateTimeout={10}
+          reactivateTimeout={100}
+          vibrate={true} 
           containerStyle={{
             margin:0,
             padding:0,

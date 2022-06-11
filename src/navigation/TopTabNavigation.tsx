@@ -6,6 +6,7 @@ import { ScanHistory } from '../screens/ScanHistory';
 const Tab = createMaterialTopTabNavigator();
 
 export function TopTabNavigation() {
+  
   return (
     <Tab.Navigator>
       <Tab.Screen name="Scan" component={ScanHistory} />

@@ -1,9 +1,8 @@
 import React,{useState} from "react";
-import {View, Text, Pressable, TextInput} from "react-native";
+import {View, TextInput} from "react-native";
 import Ionicons  from 'react-native-vector-icons/Ionicons';
 import { StackParamList } from "../navigation/StackNavigation";
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {generateQr} from "../utils/generateQr"
 import { ScreenLabel } from "../components/ScreenLabel";
 import { StackScreenHeader } from "../components/StackScreenHeader";
 import { globalStyle } from "../styles/globalStyles";

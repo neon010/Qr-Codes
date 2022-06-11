@@ -10,6 +10,7 @@ import Ionicons  from 'react-native-vector-icons/Ionicons';
 import { colors } from "../styles/colors";
 import { showToastWithGravity } from "../utils/toastAndroid";
 
+
 type Props = NativeStackScreenProps<StackParamList>;
 
 
@@ -20,6 +21,7 @@ export const SaveQrCodeData = ({navigation,route}:Props) =>{
 
     //@ts-ignore
     const {scanData} = route.params;
+
 
     return (
         <View>

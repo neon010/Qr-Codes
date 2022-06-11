@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import {View, Text, Pressable, TextInput} from "react-native";
+import {View, TextInput} from "react-native";
 import Ionicons  from 'react-native-vector-icons/Ionicons';
 import { StackParamList } from "../navigation/StackNavigation";
 import {NativeStackScreenProps} from '@react-navigation/native-stack';

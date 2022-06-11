@@ -25,6 +25,7 @@ export const Box = () =>{
      inputRange: [0, 1],
      outputRange: [-20, 180]
    })
+   
     return (
         <View style={{width:220, height:220, borderWidth:StyleSheet.hairlineWidth, borderColor:colors.primaryColor}}>
             <View style={{width:25, height:5, backgroundColor:colors.dangerColor, transform:[{translateY:-5}]}}></View>

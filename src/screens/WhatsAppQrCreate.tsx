@@ -16,7 +16,7 @@ export const WhatsAppQrCreate = ({navigation}:Props) =>{
     const [value, setValue] = useState("");
 
 
-    console.log(value)
+
 
     return (
         <View>
