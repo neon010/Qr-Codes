@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+// import io.invertase.googlemobileads.ReactNativeGoogleMobileAdsPackage;
 import com.rnfs.RNFSPackage;
 import com.gevorg.reactlibrary.RNQrGeneratorPackage;
 import com.oblador.vectoricons.VectorIconsPackage;

@@ -30,6 +30,8 @@ target 'QRCode' do
   pod 'RNFS', :path => '../node_modules/react-native-fs'
 
 
+  pod 'RNGoogleMobileAds', :path => '../node_modules/react-native-google-mobile-ads'
+
   target 'QRCodeTests' do
     inherit! :complete
     # Pods for testing

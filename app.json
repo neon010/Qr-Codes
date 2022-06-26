@@ -1,4 +1,7 @@
 {
-  "name": "QRCode",
-  "displayName": "QRCode"
+  "name": "Easy QR Code Scanner",
+  "displayName": "Easy QR Code Scanner",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-3106903641712143~3177864857"
+  }
 }
