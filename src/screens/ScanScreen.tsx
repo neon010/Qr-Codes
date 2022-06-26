@@ -13,11 +13,11 @@ import { addScanHistory } from "../writingFile/scanQRHistory";
 import { Box } from "../components/Box";
 import { colors } from "../styles/colors";
 import { showToastWithGravity } from "../utils/toastAndroid";
-
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
 
 LogBox.ignoreLogs(['ViewPropTypes','SafeAreaProviderCompat','EnsureSingleNavigator','NavigationContainerInner']); // Ignore log notification by message
-// LogBox.ignoreAllLogs(); //Ignore all log notifications
+LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 const options = {
   title: 'photoUpload',
@@ -36,6 +36,8 @@ export const ScanScreen = ({navigation}:Props) =>{
   const [FlashMode, setFlashMode] = useState(false);
   const [errMsg, setErrMsg] = useState("");
 
+
+    const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-3106903641712143~3177864857';
 
 
 
@@ -121,20 +123,28 @@ export const ScanScreen = ({navigation}:Props) =>{
           flashMode={FlashMode ? RNCamera.Constants.FlashMode.torch : RNCamera.Constants.FlashMode.off}
           bottomContent={
             <>
-              <View style={{position:'absolute',bottom:100}}>
-                <View style={{flexDirection:"row"}}>
-                  <TouchableOpacity style={{...styles.buttonTouchable, marginRight:15}} onPress={()=> setFlashMode(!FlashMode)}>
-                      <Ionicons name="md-flashlight" size={20} color={colors.whiteColor}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonTouchable} onPress={onPick}>
-                      <MaterialIcons name="insert-photo" size={20} color={colors.whiteColor}/>  
-                    </TouchableOpacity>
-                </View>
+              <View style={{position:'absolute',bottom:80}}>
+                <BannerAd
+                  unitId={adUnitId}
+                  size={BannerAdSize.FULL_BANNER }
+                  requestOptions={{
+                    requestNonPersonalizedAdsOnly: true,  
+                  }}
+                />
+              </View>
+              <View style={{position:'absolute',bottom:140}}>
+                  <View style={{flexDirection:"row"}}>
+                    <TouchableOpacity style={{...styles.buttonTouchable, marginRight:15}} onPress={()=> setFlashMode(!FlashMode)}>
+                        <Ionicons name="md-flashlight" size={20} color={colors.whiteColor}/>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={styles.buttonTouchable} onPress={onPick}>
+                        <MaterialIcons name="insert-photo" size={20} color={colors.whiteColor}/>  
+                      </TouchableOpacity>
+                  </View>
               </View>
               <View style={{position:'absolute',bottom:((Dimensions.get("screen").height/2)-80)}}>
                 <Box/>
               </View>
-
             </>
           }
         />

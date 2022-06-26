@@ -9,6 +9,7 @@ import Share from 'react-native-share';
 import Ionicons  from 'react-native-vector-icons/Ionicons';
 import { colors } from "../styles/colors";
 import { showToastWithGravity } from "../utils/toastAndroid";
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
 
 type Props = NativeStackScreenProps<StackParamList>;
@@ -17,6 +18,7 @@ type Props = NativeStackScreenProps<StackParamList>;
 
 export const SaveQrCodeData = ({navigation,route}:Props) =>{
 
+    const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-3106903641712143~3177864857';
 
 
     //@ts-ignore
@@ -137,6 +139,15 @@ export const SaveQrCodeData = ({navigation,route}:Props) =>{
                         </View>
                     </View>
                 </View>
+            </View>
+            <View style={{position:'absolute',bottom:-60}}>
+                <BannerAd
+                  unitId={adUnitId}
+                  size={BannerAdSize.FULL_BANNER }
+                  requestOptions={{
+                    requestNonPersonalizedAdsOnly: true,  
+                  }}
+                />
             </View>
         </View>
     )

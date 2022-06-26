@@ -9,6 +9,7 @@ import { createQrCodeHistory } from "../writingFile/createdQRHistory";
 import { globalStyle } from "../styles/globalStyles";
 import { colors } from "../styles/colors";
 import { showToastWithGravity } from "../utils/toastAndroid";
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
 
 type Props = NativeStackScreenProps<StackParamList>;
@@ -20,6 +21,7 @@ export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
     // @ts-ignore
     const {uri,content} = route.params;
 
+    const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-3106903641712143~3177864857';
 
 
 
@@ -126,6 +128,15 @@ export const SaveQrCodeSvg = ({navigation, route}:Props) =>{
                 >
                     <Text style={{color:colors.whiteColor}}>Share</Text>
                 </Pressable>
+            </View>
+            <View style={{position:'absolute',bottom:-80}}>
+                <BannerAd
+                  unitId={adUnitId}
+                  size={BannerAdSize.FULL_BANNER }
+                  requestOptions={{
+                    requestNonPersonalizedAdsOnly: true,  
+                  }}
+                />
             </View>
         </View>
     )

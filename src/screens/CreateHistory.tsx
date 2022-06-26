@@ -7,12 +7,16 @@ import { globalStyle } from "../styles/globalStyles";
 import { useFocusEffect } from '@react-navigation/native';
 import { colors } from "../styles/colors";
 import { truncate } from "../utils/truncateText";
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
 
 export const CreateHistory = ({navigation}:{navigation:any})=>{
 
     const [scanHistory, setScanHistory] = useState<any>({});
     const [errMsg, setErrMSg] = useState("");
+
+    const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-3106903641712143~3177864857';
+
 
     useFocusEffect(
         useCallback(()=>{
@@ -106,6 +110,15 @@ export const CreateHistory = ({navigation}:{navigation:any})=>{
                     )
                 )
             }
+            <View style={{position:'absolute',bottom:0}}>
+                <BannerAd
+                  unitId={adUnitId}
+                  size={BannerAdSize.FULL_BANNER }
+                  requestOptions={{
+                    requestNonPersonalizedAdsOnly: true,  
+                  }}
+                />
+            </View>
         </ScrollView>
     )
 }
