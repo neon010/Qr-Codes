@@ -5,7 +5,20 @@ import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 import com.rnfs.RNFSPackage;  // <--- import
 
+
+
 public class MainActivity extends ReactActivity {
+
+  // protected void onCreate(Bundle savedInstanceState) {
+  //   // super.onCreate(savedInstanceState);
+  //   // setContentView(R.layout.activity_main);
+
+  //   MobileAds.initialize(this, new OnInitializationCompleteListener() {
+  //       @Override
+  //       public void onInitializationComplete(InitializationStatus initializationStatus) {
+  //       }
+  //   });
+  // }
 
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule

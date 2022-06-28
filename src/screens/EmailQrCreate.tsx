@@ -15,7 +15,7 @@ type Props = NativeStackScreenProps<StackParamList>;
 export const EmailQrCreate = ({navigation}:Props) =>{
     const [email, setEmail] = useState("");
 
-    const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-3106903641712143~3177864857';
+    const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-3106903641712143/9234091024';
 
 
     return (

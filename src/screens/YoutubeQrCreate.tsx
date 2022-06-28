@@ -18,7 +18,7 @@ export const YoutubeQrCreate = ({navigation}:Props) =>{
     const [qrData, setQrData] = useState("");
     const [type, setType] = useState("URL");
 
-    const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-3106903641712143~3177864857';
+    const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-3106903641712143/9234091024';
 
 
     return (

@@ -139,8 +139,8 @@ android {
         applicationId "com.mksmohan.easyqrcodescanner"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.0.2"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
         missingDimensionStrategy 'react-native-camera', 'general' // <--- insert this line
 
@@ -284,6 +284,7 @@ dependencies {
 
     implementation project(':react-native-fs')
 
+    implementation 'com.google.android.gms:play-services-ads:20.6.0'
 
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
